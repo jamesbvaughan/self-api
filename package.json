@@ -9,6 +9,7 @@
   "author": "James Vaughan",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "node-fetch": "^2.1.1"

@@ -1,7 +1,10 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
 const fetch = require('node-fetch')
 const app = express()
+
+app.use(cors())
 
 app.get('/song', (req, res) => {
   fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&limit=1&user=magicjamesv&api_key=${process.env.LAST_FM_API_KEY}&format=json`)
@@ -9,11 +12,11 @@ app.get('/song', (req, res) => {
     .then(json => json.recenttracks.track)
     .then(tracks =>
       res.send(`${tracks.length > 1
-          ? 'At the moment I\'m listening to'
-          : 'The last song I listened to was'
+          ? 'at the moment I\'m listening to'
+          : 'the last song I listened to was'
         }
         <a href='${tracks[0].url}'>
-          ${tracks[0].name} by ${tracks[0].artist['#text']}</a>.`)
+          ${tracks[0].name} by ${tracks[0].artist['#text']}</a>`)
     )
 })
 
@@ -22,9 +25,9 @@ app.get('/movie', (req, res) => {
     .then(r => r.json())
     .then(json => json.items[0])
     .then(movie =>
-      res.send(`The last movie I watched was <a href="${movie.link}">${
+      res.send(`the last movie I watched was <a href="${movie.link}">${
         movie.title.split(',')[0]
-      }</a>.`)
+      }</a>`)
     )
 })
 
