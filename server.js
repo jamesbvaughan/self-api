@@ -24,11 +24,8 @@ app.get('/song', (req, res) => {
   fetch(lastfmURL)
     .then(r => r.json())
     .then(({ recenttracks: { track } }) => {
-      const link = `
-        <a href='${track[0].url}'>
-          ${track[0].name} by ${track[0].artist['#text']}
-        </a>
-      `
+      const linkBody = `${track[0].name} by ${track[0].artist['#text']}`
+      const link = `<a href='${track[0].url}'>${linkBody}</a>`
       const responseText = track.length > 1
         ? 'at the moment I\'m listening to'
         : 'the last song I listened to was'
@@ -41,11 +38,8 @@ app.get('/movie', (req, res) => {
   fetch(letterboxdURL)
     .then(r => r.json())
     .then(({ items: [movie] }) => {
-      const link = `
-        <a href="${movie.link}">
-          ${movie.title.split(',')[0]}
-        </a>
-      `
+      const link = `<a href="${movie.link}">${movie.title.split(',')[0]}</a>`
+
       res.send('the last movie I watched was' + link)
     })
 })
