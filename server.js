@@ -27,8 +27,8 @@ app.get('/song', (req, res) => {
       const linkBody = `${track[0].name} by ${track[0].artist['#text']}`
       const link = `<a href='${track[0].url}'>${linkBody}</a>`
       const responseText = track.length > 1
-        ? 'at the moment I\'m listening to'
-        : 'the last song I listened to was'
+        ? 'at the moment I\'m listening to '
+        : 'the last song I listened to was '
 
       res.send(responseText + link)
     })
@@ -40,7 +40,7 @@ app.get('/movie', (req, res) => {
     .then(({ items: [movie] }) => {
       const link = `<a href="${movie.link}">${movie.title.match(/(.*),/)[1]}</a>`
 
-      res.send('the last movie I watched was' + link)
+      res.send('the last movie I watched was ' + link)
     })
 })
 
