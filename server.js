@@ -38,7 +38,7 @@ app.get('/movie', (req, res) => {
   fetch(letterboxdURL)
     .then(r => r.json())
     .then(({ items: [movie] }) => {
-      const link = `<a href="${movie.link}">${movie.title.split(',')[0]}</a>`
+      const link = `<a href="${movie.link}">${movie.title.match(/(.*),/)[1]}</a>`
 
       res.send('the last movie I watched was' + link)
     })
